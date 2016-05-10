@@ -1,0 +1,21 @@
+{
+  "name": "template",
+  "description": "A core template included folder structures, Sample files and Gulp task already defined, Ready to work in 5 seconds !",
+  "main": "index.js",
+  "authors": [
+    "Hung"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/machinavn/Templates",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3"
+  }
+}
