@@ -8,6 +8,7 @@ A core template included folder structures, Sample files and Gulp task already d
 ## Getting Started
 
 Clone this repository: `git clone https://github.com/machinavn/Templates`
+
 Install Dependencies : `npm i && bower install`
 
-*For more information, read [Todo.md](https://github.com/machinavn/Templates/blob/master/Todo.md) *
+*For more information, read [Todo.md](https://github.com/machinavn/Templates/blob/master/Todo.md)*
