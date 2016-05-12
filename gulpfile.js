@@ -28,17 +28,6 @@ var bs = require('browser-sync').create(); // create a browser sync instance.
 
 
 
-/*
- * LOG ERROR
- *
- */
- function errorlog(err){
-    gutil.beep();
-    console.error(err.message);
-    this.emit('end');
-};
-
-
 
 
 /*
@@ -47,6 +36,8 @@ var bs = require('browser-sync').create(); // create a browser sync instance.
  *
  */
 
+
+// Watch any changes from .html files and reload the browser
   gulp.task('html', function(){
       gulp.src('_SRC/**/*.html')
       .pipe(bs.reload({stream:true}));
@@ -82,12 +73,12 @@ var bs = require('browser-sync').create(); // create a browser sync instance.
 
  gulp.task('less', function () {
   return gulp.src('_SRC/less/style.less')
-    .pipe(plumber({                      //Plumber prevent watch task crash
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
-    }))
+  /* Use Plumber to prevent pipe break */
+    .pipe(plumber(function(error) {
+    gutil.beep();
+    gutil.log(gutil.colors.red(error.message));
+    this.emit('end');
+}))
     .pipe(less({                         //Complile LESS to CSS file
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
