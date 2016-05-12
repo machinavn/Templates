@@ -20,6 +20,7 @@
     "normalize-css": "normalize.css#^4.1.1",
     "animate.css": "^3.5.1",
     "waypoints": "^4.0.0",
-    "font-awesome": "fontawesome#^4.6.2"
+    "font-awesome": "fontawesome#^4.6.2",
+    "hover": "^2.0.2"
   }
 }
