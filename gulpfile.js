@@ -20,10 +20,26 @@ var concat = require('gulp-concat'); // Concatenate Files
 var uglify = require('gulp-uglify'); // Minify JavaScript
 var jshint = require('gulp-jshint'); // Lint Javascript error on save
 
+var plumber = require('gulp-plumber'); // Prevent Watch Task break when error complile LESS
 
 var gutil = require('gulp-util'); // Print Log
 const chalk = require('chalk'); // Color log for easy reading
 var bs = require('browser-sync').create(); // create a browser sync instance.
+
+
+
+/*
+ * LOG ERROR
+ *
+ */
+ function errorlog(err){
+    gutil.beep();
+    console.error(err.message);
+    this.emit('end');
+};
+
+
+
 
 /*
  * HTML TASK
@@ -66,7 +82,13 @@ var bs = require('browser-sync').create(); // create a browser sync instance.
 
  gulp.task('less', function () {
   return gulp.src('_SRC/less/style.less')
-    .pipe(less({
+    .pipe(plumber({                      //Plumber prevent watch task crash
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(less({                         //Complile LESS to CSS file
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .pipe(gulp.dest('_SRC/css/'))
@@ -136,7 +158,6 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch("_SRC");     
     gulp.watch("_SRC/less/**/*.less", ['less']); // Watch Less folder whenever .less file change
     gulp.watch('_SRC/**/*.html', ['html']);
     gulp.watch("_SRC/js/**/*.js").on('change', bs.reload); // Reload Browser whenever update Scripts
