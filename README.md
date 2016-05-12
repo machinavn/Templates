@@ -11,4 +11,5 @@ Clone this repository: `git clone https://github.com/machinavn/Templates`
 
 Install Dependencies : `npm i && bower install`
 
+Run: `gulp watch` to start stream!
 *For more information, read [Todo.md](https://github.com/machinavn/Templates/blob/master/Todo.md)*
